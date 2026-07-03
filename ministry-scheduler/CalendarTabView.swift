@@ -140,8 +140,7 @@ struct CalendarTabView: View {
     }
 
     private var monthTitle: String {
-        let date = calendar.date(from: DateComponents(year: displayedYear, month: displayedMonth))!
-        return date.formatted(.dateTime.month(.wide).year())
+        MonthGrid(year: displayedYear, month: displayedMonth, calendar: calendar).monthTitle
     }
 
     private func shiftMonth(_ delta: Int) {
@@ -161,40 +160,30 @@ struct CalendarTabView: View {
 
     // MARK: - Grid
 
-    private var weekdaySymbols: [String] {
-        let symbols = calendar.veryShortStandaloneWeekdaySymbols
-        let first = calendar.firstWeekday - 1
-        return Array(symbols[first...] + symbols[..<first])
-    }
-
     private var calendarGrid: some View {
-        let firstOfMonth = calendar.date(from: DateComponents(year: displayedYear, month: displayedMonth, day: 1))!
-        let daysInMonth = calendar.range(of: .day, in: .month, for: firstOfMonth)!.count
-        let firstWeekday = calendar.component(.weekday, from: firstOfMonth)
-        let leadingBlanks = (firstWeekday - calendar.firstWeekday + 7) % 7
-        let todayComps = calendar.dateComponents([.year, .month, .day], from: .now)
+        let grid = MonthGrid(year: displayedYear, month: displayedMonth, calendar: calendar)
 
         return LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: 7), spacing: 4) {
-            ForEach(weekdaySymbols, id: \.self) { symbol in
-                Text(symbol)
+            ForEach(grid.weekdaySymbols.indices, id: \.self) { index in
+                Text(grid.weekdaySymbols[index])
                     .font(.caption2.bold())
                     .foregroundStyle(.secondary)
             }
-            ForEach(0..<leadingBlanks, id: \.self) { _ in
-                Color.clear.frame(height: 52)
-            }
-            ForEach(1...daysInMonth, id: \.self) { day in
-                let isToday = todayComps.year == displayedYear
-                    && todayComps.month == displayedMonth
-                    && todayComps.day == day
-                DayCell(
-                    day: day,
-                    entry: monthEntries.first { $0.day == day },
-                    isToday: isToday
-                )
-                .onTapGesture { selectedDay = day }
+            ForEach(grid.cells) { cell in
+                switch cell {
+                case .blank:
+                    Color.clear.frame(height: 52)
+                case .day(let day):
+                    DayCell(
+                        day: day,
+                        entry: monthEntries.first { $0.day == day },
+                        isToday: grid.isToday(day: day)
+                    )
+                    .onTapGesture { selectedDay = day }
+                }
             }
         }
+        .id("\(displayedYear)-\(displayedMonth)")
     }
 
     private var legend: some View {
@@ -332,6 +321,13 @@ private struct DayEditorSheet: View {
             }
             .navigationTitle(dateTitle)
             .navigationBarTitleDisplayMode(.inline)
+            .onChange(of: confirmActual) { _, isOn in
+                // Default the confirmed time to whatever is currently planned,
+                // unless this day already has a recorded actual time.
+                if isOn && entry?.actualMinutes == nil {
+                    actualMinutes = plannedMinutes
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
