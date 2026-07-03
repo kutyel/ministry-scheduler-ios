@@ -12,7 +12,9 @@ import SwiftData
 struct ministry_schedulerApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            DayEntry.self,
+            MonthGoal.self,
+            ServiceYearGoal.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
