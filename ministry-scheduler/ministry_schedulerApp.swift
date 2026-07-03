@@ -16,12 +16,24 @@ struct ministry_schedulerApp: App {
             MonthGoal.self,
             ServiceYearGoal.self,
         ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+            return try ModelContainer(for: schema, configurations: [configuration])
         } catch {
-            fatalError("Could not create ModelContainer: \(error)")
+            // The on-disk store predates the current schema and can't be
+            // migrated (e.g. the Xcode template's Item store). Wipe it and
+            // start fresh rather than crashing on every launch.
+            let storeURL = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false).url
+            for suffix in ["", "-wal", "-shm"] {
+                try? FileManager.default.removeItem(at: URL(fileURLWithPath: storeURL.path + suffix))
+            }
+            do {
+                let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+                return try ModelContainer(for: schema, configurations: [configuration])
+            } catch {
+                fatalError("Could not create ModelContainer: \(error)")
+            }
         }
     }()
 
