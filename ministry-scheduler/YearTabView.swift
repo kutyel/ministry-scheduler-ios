@@ -28,7 +28,9 @@ struct YearTabView: View {
         let year: Int
         let month: Int
         let plannedMinutes: Int
-        let spentMinutes: Int
+        let fieldServiceMinutes: Int
+        let creditedMinutes: Int
+        var spentMinutes: Int { fieldServiceMinutes + creditedMinutes }
         var id: String { "\(year)-\(month)" }
         var label: String {
             Calendar.current.shortMonthSymbols[month - 1]
@@ -38,11 +40,13 @@ struct YearTabView: View {
     private var monthsData: [MonthData] {
         ServiceYear.months(startYear: startYear).map { ym in
             let monthEntries = entries.filter { $0.year == ym.year && $0.month == ym.month }
+            let report = MonthlyReport(year: ym.year, month: ym.month, entries: monthEntries)
             return MonthData(
                 year: ym.year,
                 month: ym.month,
                 plannedMinutes: monthEntries.reduce(0) { $0 + $1.plannedMinutes },
-                spentMinutes: monthEntries.reduce(0) { $0 + ($1.actualMinutes ?? 0) }
+                fieldServiceMinutes: report.fieldServiceMinutes,
+                creditedMinutes: report.creditedMinutes
             )
         }
     }
@@ -161,10 +165,17 @@ struct YearTabView: View {
 
                     BarMark(
                         x: .value("Month", m.label),
-                        y: .value("Hours", TimeFormat.hours(m.spentMinutes))
+                        y: .value("Hours", TimeFormat.hours(m.fieldServiceMinutes))
                     )
                     .position(by: .value("Series", "Spent"))
                     .foregroundStyle(by: .value("Series", "Spent"))
+
+                    BarMark(
+                        x: .value("Month", m.label),
+                        y: .value("Hours", TimeFormat.hours(m.creditedMinutes))
+                    )
+                    .position(by: .value("Series", "Spent"))
+                    .foregroundStyle(by: .value("Series", "Credited"))
                 }
 
                 RuleMark(y: .value("Monthly average", averageMonthlyGoalHours))
@@ -179,6 +190,7 @@ struct YearTabView: View {
             .chartForegroundStyleScale([
                 "Planned": Color.blue.opacity(0.5),
                 "Spent": Color.green,
+                "Credited": Color.purple,
             ])
             .chartXAxis {
                 AxisMarks { _ in

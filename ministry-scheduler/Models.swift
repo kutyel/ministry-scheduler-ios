@@ -6,6 +6,25 @@
 import Foundation
 import SwiftData
 
+/// How the hours of a day count toward the monthly report.
+/// LDC and Bethel time is reported to Hourglass (and similar apps) as
+/// "Credited hours"; everything else is regular field service time.
+enum HourCategory: String, CaseIterable, Codable {
+    case fieldService
+    case ldc
+    case bethel
+
+    var isCredited: Bool { self != .fieldService }
+
+    var label: String {
+        switch self {
+        case .fieldService: return "Field service"
+        case .ldc: return "LDC"
+        case .bethel: return "Bethel"
+        }
+    }
+}
+
 /// Time planned (and optionally confirmed) for a single calendar day.
 @Model
 final class DayEntry {
@@ -15,13 +34,29 @@ final class DayEntry {
     var plannedMinutes: Int
     /// nil until the user confirms how much time was actually spent that day.
     var actualMinutes: Int?
+    /// Raw value of `HourCategory`. Stored as a string with a default so
+    /// existing stores migrate without data loss.
+    var categoryRaw: String = HourCategory.fieldService.rawValue
 
-    init(year: Int, month: Int, day: Int, plannedMinutes: Int = 0, actualMinutes: Int? = nil) {
+    var category: HourCategory {
+        get { HourCategory(rawValue: categoryRaw) ?? .fieldService }
+        set { categoryRaw = newValue.rawValue }
+    }
+
+    init(
+        year: Int,
+        month: Int,
+        day: Int,
+        plannedMinutes: Int = 0,
+        actualMinutes: Int? = nil,
+        category: HourCategory = .fieldService
+    ) {
         self.year = year
         self.month = month
         self.day = day
         self.plannedMinutes = plannedMinutes
         self.actualMinutes = actualMinutes
+        self.categoryRaw = category.rawValue
     }
 }
 

@@ -15,6 +15,7 @@ struct CalendarTabView: View {
     @State private var displayedMonth: Int
     @State private var selectedDay: Int?
     @State private var editingGoal = false
+    @State private var showingReport = false
 
     private let calendar = Calendar.current
 
@@ -36,6 +37,10 @@ struct CalendarTabView: View {
     private var plannedMinutes: Int { monthEntries.reduce(0) { $0 + $1.plannedMinutes } }
     private var spentMinutes: Int { monthEntries.reduce(0) { $0 + ($1.actualMinutes ?? 0) } }
 
+    private var report: MonthlyReport {
+        MonthlyReport(year: displayedYear, month: displayedMonth, entries: entries)
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -49,6 +54,13 @@ struct CalendarTabView: View {
             }
             .navigationTitle("Schedule")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        showingReport = true
+                    } label: {
+                        Label("Send report", systemImage: "paperplane")
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Today") { goToToday() }
                 }
@@ -69,6 +81,10 @@ struct CalendarTabView: View {
                     onSave: saveGoal
                 )
                 .presentationDetents([.height(280)])
+            }
+            .sheet(isPresented: $showingReport) {
+                MonthReportSheet(report: report)
+                    .presentationDetents([.medium, .large])
             }
         }
     }
@@ -103,6 +119,17 @@ struct CalendarTabView: View {
                 statBlock("Spent", TimeFormat.hm(spentMinutes), .green)
                 Divider().frame(height: 32)
                 statBlock("Left", TimeFormat.hm(max(0, goalMinutes - spentMinutes)), .orange)
+            }
+
+            if report.creditedMinutes > 0 {
+                Divider()
+                HStack {
+                    statBlock("Field service", TimeFormat.hm(report.fieldServiceMinutes), .green)
+                    Divider().frame(height: 32)
+                    statBlock("LDC", TimeFormat.hm(report.ldcMinutes), .purple)
+                    Divider().frame(height: 32)
+                    statBlock("Bethel", TimeFormat.hm(report.bethelMinutes), .purple)
+                }
             }
         }
         .padding()
@@ -243,11 +270,18 @@ private struct DayCell: View {
                 .font(.callout.weight(isToday ? .bold : .regular))
                 .foregroundStyle(isToday ? Color.accentColor : .primary)
             if let label = status.label {
-                Text(label)
-                    .font(.system(size: 9, weight: .semibold))
-                    .foregroundStyle(status.color)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.7)
+                HStack(spacing: 2) {
+                    if let entry, entry.category.isCredited {
+                        Image(systemName: entry.category == .ldc ? "hammer.fill" : "building.2.fill")
+                            .font(.system(size: 7))
+                            .foregroundStyle(.purple)
+                    }
+                    Text(label)
+                        .font(.system(size: 9, weight: .semibold))
+                        .foregroundStyle(status.color)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                }
             }
         }
         .frame(maxWidth: .infinity)
@@ -278,6 +312,7 @@ private struct DayEditorSheet: View {
     @State private var plannedMinutes: Int
     @State private var confirmActual: Bool
     @State private var actualMinutes: Int
+    @State private var category: HourCategory
 
     init(year: Int, month: Int, day: Int, entry: DayEntry?) {
         self.year = year
@@ -287,6 +322,17 @@ private struct DayEditorSheet: View {
         _plannedMinutes = State(initialValue: entry?.plannedMinutes ?? 0)
         _confirmActual = State(initialValue: entry?.actualMinutes != nil)
         _actualMinutes = State(initialValue: entry?.actualMinutes ?? entry?.plannedMinutes ?? 0)
+        _category = State(initialValue: entry?.category ?? .fieldService)
+    }
+
+    /// Binding for one credited-category toggle. LDC and Bethel are mutually
+    /// exclusive: turning one on replaces the other, turning it off returns
+    /// the day to regular field service time.
+    private func creditedToggle(_ target: HourCategory) -> Binding<Bool> {
+        Binding(
+            get: { category == target },
+            set: { category = $0 ? target : .fieldService }
+        )
     }
 
     private var dateTitle: String {
@@ -309,6 +355,14 @@ private struct DayEditorSheet: View {
                     if confirmActual {
                         Text(comparisonFooter)
                     }
+                }
+                Section {
+                    Toggle("LDC", isOn: creditedToggle(.ldc))
+                    Toggle("Bethel", isOn: creditedToggle(.bethel))
+                } header: {
+                    Text("Category")
+                } footer: {
+                    Text("LDC and Bethel time is reported separately as credited hours.")
                 }
                 if entry != nil {
                     Section {
@@ -354,14 +408,71 @@ private struct DayEditorSheet: View {
             } else {
                 entry.plannedMinutes = plannedMinutes
                 entry.actualMinutes = actual
+                entry.category = category
             }
         } else if plannedMinutes > 0 || actual != nil {
             modelContext.insert(DayEntry(
                 year: year, month: month, day: day,
-                plannedMinutes: plannedMinutes, actualMinutes: actual
+                plannedMinutes: plannedMinutes, actualMinutes: actual,
+                category: category
             ))
         }
         dismiss()
+    }
+}
+
+// MARK: - Month report
+
+/// Month-end summary split into field service and credited (LDC/Bethel)
+/// hours, ready to send to Hourglass or any other reporting app.
+private struct MonthReportSheet: View {
+    @Environment(\.dismiss) private var dismiss
+
+    let report: MonthlyReport
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section("Hours") {
+                    LabeledContent("Field service", value: TimeFormat.hm(report.fieldServiceMinutes))
+                }
+                Section {
+                    LabeledContent("LDC", value: TimeFormat.hm(report.ldcMinutes))
+                    LabeledContent("Bethel", value: TimeFormat.hm(report.bethelMinutes))
+                    LabeledContent("Total credited", value: TimeFormat.hm(report.creditedMinutes))
+                        .fontWeight(.semibold)
+                } header: {
+                    Text("Credited hours")
+                } footer: {
+                    Text("In Hourglass, enter credited time in the “Credit” field of your report.")
+                }
+                Section {
+                    ShareLink(item: report.reportText) {
+                        Label("Share report…", systemImage: "square.and.arrow.up")
+                    }
+                    Button {
+                        UIPasteboard.general.string = report.reportText
+                    } label: {
+                        Label("Copy report", systemImage: "doc.on.doc")
+                    }
+                    Button {
+                        UIPasteboard.general.string = report.reportText
+                        HourglassIntegration.open()
+                    } label: {
+                        Label("Copy & open Hourglass", systemImage: "hourglass")
+                    }
+                } footer: {
+                    Text("Sharing works with Hourglass and other reporting apps installed on this phone.")
+                }
+            }
+            .navigationTitle(report.monthName)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
+        }
     }
 }
 
