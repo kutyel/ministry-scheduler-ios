@@ -62,21 +62,52 @@ struct MonthlyReport {
         lines.append("Sent from iMinistry")
         return lines.joined(separator: "\n")
     }
+
+    /// Credited time as decimal hours, e.g. "33" or "10.5".
+    var creditHoursValue: String {
+        String(format: "%g", Double(creditedMinutes) / 60.0)
+    }
+
+    /// Human-readable breakdown of the credited time, e.g.
+    /// "Credit: 33h Bethel, 10h LDC".
+    var creditRemarks: String {
+        var parts: [String] = []
+        if bethelMinutes > 0 {
+            parts.append("\(TimeFormat.hm(bethelMinutes)) Bethel")
+        }
+        if ldcMinutes > 0 {
+            parts.append("\(TimeFormat.hm(ldcMinutes)) LDC")
+        }
+        return "Credit: " + parts.joined(separator: ", ")
+    }
 }
 
-/// Opens the Hourglass app (or its web app as a fallback) so the report
-/// can be pasted into the publisher's monthly report form.
+/// Submits the report to Hourglass through its universal report URL,
+/// which opens the app on iOS/Android (or the web app otherwise) with
+/// the monthly report form pre-filled.
 enum HourglassIntegration {
-    static let webAppURL = URL(string: "https://app.hourglass-app.com/")!
-    /// Custom scheme of the Hourglass mobile app. Undocumented, so we
-    /// always fall back to the web app if it can't be opened.
-    static let appURL = URL(string: "hourglass://")!
+    static let submitEndpoint = "https://app.hourglass-app.com/report/submit"
 
-    static func open() {
-        UIApplication.shared.open(appURL) { success in
-            if !success {
-                UIApplication.shared.open(webAppURL)
-            }
+    /// month, year and minutes are required; minutes=1 means "shared in
+    /// the ministry" when no field service time was recorded. Credited
+    /// time goes in `credithours` and, labelled, in `remarks`.
+    static func submitURL(for report: MonthlyReport) -> URL {
+        var components = URLComponents(string: submitEndpoint)!
+        let minutes = report.fieldServiceMinutes > 0 ? report.fieldServiceMinutes : 1
+        var items = [
+            URLQueryItem(name: "month", value: String(report.month)),
+            URLQueryItem(name: "year", value: String(report.year)),
+            URLQueryItem(name: "minutes", value: String(minutes)),
+        ]
+        if report.creditedMinutes > 0 {
+            items.append(URLQueryItem(name: "credithours", value: report.creditHoursValue))
+            items.append(URLQueryItem(name: "remarks", value: report.creditRemarks))
         }
+        components.queryItems = items
+        return components.url!
+    }
+
+    static func submit(_ report: MonthlyReport) {
+        UIApplication.shared.open(submitURL(for: report))
     }
 }

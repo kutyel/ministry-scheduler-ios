@@ -444,9 +444,14 @@ private struct MonthReportSheet: View {
                 } header: {
                     Text("Credited hours")
                 } footer: {
-                    Text("In Hourglass, enter credited time in the “Credit” field of your report.")
+                    Text("Credited time is sent to Hourglass automatically, labelled in the report remarks.")
                 }
                 Section {
+                    Button {
+                        HourglassIntegration.submit(report)
+                    } label: {
+                        Label("Send to Hourglass", systemImage: "hourglass")
+                    }
                     ShareLink(item: report.reportText) {
                         Label("Share report…", systemImage: "square.and.arrow.up")
                     }
@@ -455,14 +460,8 @@ private struct MonthReportSheet: View {
                     } label: {
                         Label("Copy report", systemImage: "doc.on.doc")
                     }
-                    Button {
-                        UIPasteboard.general.string = report.reportText
-                        HourglassIntegration.open()
-                    } label: {
-                        Label("Copy & open Hourglass", systemImage: "hourglass")
-                    }
                 } footer: {
-                    Text("Sharing works with Hourglass and other reporting apps installed on this phone.")
+                    Text("Sending opens Hourglass with the report form pre-filled; credited time is included in the remarks. Sharing works with any other reporting app on this phone.")
                 }
             }
             .navigationTitle(report.monthName)
