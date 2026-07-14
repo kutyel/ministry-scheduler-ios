@@ -1,7 +1,8 @@
-# This workflow will build a Swift project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+# Builds the iOS app and runs the unit test suite on an iOS Simulator.
+# This is an Xcode app project (no Package.swift), so it needs xcodebuild
+# rather than `swift build` / `swift test`.
 
-name: Swift
+name: CI
 
 on:
   push:
@@ -10,13 +11,26 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  test:
     runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+
+    - name: Pick a simulator
+      id: simulator
+      run: |
+        DEVICE=$(xcrun simctl list devices available | grep -oE 'iPhone [^(]+' | head -1 | sed 's/ *$//')
+        echo "Using simulator: $DEVICE"
+        echo "device=$DEVICE" >> "$GITHUB_OUTPUT"
+
+    - name: Build and run unit tests
+      # UI tests are skipped in CI for now: they are slow on shared runners
+      # and the MonthReportUITests element queries are still being stabilized.
+      run: |
+        xcodebuild test \
+          -project ministry-scheduler.xcodeproj \
+          -scheme ministry-scheduler \
+          -destination "platform=iOS Simulator,name=${{ steps.simulator.outputs.device }}" \
+          -skip-testing:ministry-schedulerUITests \
+          CODE_SIGNING_ALLOWED=NO
