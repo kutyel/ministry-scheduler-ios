@@ -112,7 +112,7 @@ struct YearTabView: View {
         .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 16))
     }
 
-    private func statBlock(_ title: String, _ value: String, _ color: Color) -> some View {
+    private func statBlock(_ title: LocalizedStringKey, _ value: String, _ color: Color) -> some View {
         VStack(spacing: 2) {
             Text(title)
                 .font(.caption)
@@ -149,7 +149,13 @@ struct YearTabView: View {
     }
 
     private var chart: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        // Chart series names double as legend labels and scale keys, so they
+        // are resolved to one localized string used in both places.
+        let planned = String(localized: "Planned")
+        let spent = String(localized: "Spent")
+        let credited = String(localized: "Credited")
+
+        return VStack(alignment: .leading, spacing: 8) {
             Text("Planned vs. spent per month")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
@@ -160,22 +166,22 @@ struct YearTabView: View {
                         x: .value("Month", m.label),
                         y: .value("Hours", TimeFormat.hours(m.plannedMinutes))
                     )
-                    .position(by: .value("Series", "Planned"))
-                    .foregroundStyle(by: .value("Series", "Planned"))
+                    .position(by: .value("Series", planned))
+                    .foregroundStyle(by: .value("Series", planned))
 
                     BarMark(
                         x: .value("Month", m.label),
                         y: .value("Hours", TimeFormat.hours(m.fieldServiceMinutes))
                     )
-                    .position(by: .value("Series", "Spent"))
-                    .foregroundStyle(by: .value("Series", "Spent"))
+                    .position(by: .value("Series", spent))
+                    .foregroundStyle(by: .value("Series", spent))
 
                     BarMark(
                         x: .value("Month", m.label),
                         y: .value("Hours", TimeFormat.hours(m.creditedMinutes))
                     )
-                    .position(by: .value("Series", "Spent"))
-                    .foregroundStyle(by: .value("Series", "Credited"))
+                    .position(by: .value("Series", spent))
+                    .foregroundStyle(by: .value("Series", credited))
                 }
 
                 RuleMark(y: .value("Monthly average", averageMonthlyGoalHours))
@@ -188,9 +194,9 @@ struct YearTabView: View {
                     }
             }
             .chartForegroundStyleScale([
-                "Planned": Color.blue.opacity(0.5),
-                "Spent": Color.green,
-                "Credited": Color.purple,
+                planned: Color.blue.opacity(0.5),
+                spent: Color.green,
+                credited: Color.purple,
             ])
             .chartXAxis {
                 AxisMarks { _ in

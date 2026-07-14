@@ -1,0 +1,673 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Calendar" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Calendario" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Kalender" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Calendário" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Calendario" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Calendrier" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "カレンダー" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "日历" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Kalendarz" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Kalender" } }
+      }
+    },
+    "Year" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Año" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Jahr" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Ano" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Anno" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Année" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "年" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "年" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Rok" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "År" } }
+      }
+    },
+    "Schedule" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Programa" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Plan" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Programação" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Programma" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Programme" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "予定表" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "日程" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Plan" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Plan" } }
+      }
+    },
+    "Send report" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Enviar informe" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Bericht senden" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Enviar relatório" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Invia il rapporto" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Envoyer le rapport" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "報告を送信" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "发送报告" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Wyślij sprawozdanie" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Send rapport" } }
+      }
+    },
+    "Today" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Hoy" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Heute" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Hoje" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Oggi" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aujourd’hui" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "今日" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "今天" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Dziś" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "I dag" } }
+      }
+    },
+    "Monthly Goal" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Meta mensual" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Monatsziel" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Meta mensal" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Obiettivo mensile" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Objectif mensuel" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "月間目標" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每月目标" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Cel miesięczny" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Månedsmål" } }
+      }
+    },
+    "Yearly Goal" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Meta anual" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Jahresziel" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Meta anual" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Obiettivo annuale" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Objectif annuel" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "年間目標" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "年度目标" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Cel roczny" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Årsmål" } }
+      }
+    },
+    "Planned" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Planificado" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Geplant" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Planejado" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Pianificato" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Prévu" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "予定" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "计划" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Zaplanowane" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Planlagt" } }
+      }
+    },
+    "Spent" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Realizado" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Geleistet" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Realizado" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Svolto" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Effectué" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "実績" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已完成" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Wykonane" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Brukt" } }
+      }
+    },
+    "Left" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Restante" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Übrig" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Restante" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Rimanente" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Restant" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "残り" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "剩余" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Pozostało" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Gjenstår" } }
+      }
+    },
+    "Field service" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Predicación" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Predigtdienst" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Ministério de campo" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Ministero di campo" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Prédication" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "野外奉仕" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "传道" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Służba kaznodziejska" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Felttjeneste" } }
+      }
+    },
+    "LDC" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "LDC" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "LDC" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "LDC" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "LDC" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "LDC" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "LDC" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "LDC" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "LDC" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "LDC" } }
+      }
+    },
+    "Bethel" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Betel" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Bethel" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Betel" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Betel" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Béthel" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ベテル" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "伯特利" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Betel" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Betel" } }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Hecho" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Fertig" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Concluído" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Fatto" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Terminé" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "完了" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "完成" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Gotowe" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Ferdig" } }
+      }
+    },
+    "Under" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Incompleto" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Zu wenig" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Abaixo" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Sotto" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "En dessous" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "未達" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未达" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Poniżej" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Under" } }
+      }
+    },
+    "Hours" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Horas" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Stunden" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Horas" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Ore" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Heures" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "時間" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "小时" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Godziny" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Timer" } }
+      }
+    },
+    "Minutes" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Minutos" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Minuten" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Minutos" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Minuti" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Minutes" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "分" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "分钟" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Minuty" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Minutter" } }
+      }
+    },
+    "Credited hours" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Horas acreditadas" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Angerechnete Stunden" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Horas creditadas" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Ore accreditate" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Heures créditées" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "クレジット時間" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "抵算时间" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Godziny zaliczone" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Godskrevne timer" } }
+      }
+    },
+    "Total credited" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Total acreditado" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Insgesamt angerechnet" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Total creditado" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Totale accreditato" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Total crédité" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "クレジット合計" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "抵算合计" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Razem zaliczone" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Totalt godskrevet" } }
+      }
+    },
+    "Credited time is sent to Hourglass automatically, labelled in the report remarks." : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "El tiempo acreditado se envía a Hourglass automáticamente, indicado en las observaciones del informe." } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Angerechnete Zeit wird automatisch an Hourglass gesendet und in den Bemerkungen des Berichts ausgewiesen." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O tempo creditado é enviado ao Hourglass automaticamente, indicado nas observações do relatório." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Il tempo accreditato viene inviato automaticamente a Hourglass, indicato nelle osservazioni del rapporto." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Le temps crédité est envoyé automatiquement à Hourglass et indiqué dans les remarques du rapport." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "クレジット時間は自動的にHourglassへ送信され、報告の備考欄に記載されます。" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "抵算时间会自动发送到Hourglass，并标注在报告备注中。" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Czas zaliczony jest wysyłany do Hourglass automatycznie i oznaczony w uwagach sprawozdania." } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Godskrevet tid sendes automatisk til Hourglass og merkes i rapportens merknader." } }
+      }
+    },
+    "Send to Hourglass" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Enviar a Hourglass" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "An Hourglass senden" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Enviar para o Hourglass" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Invia a Hourglass" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Envoyer à Hourglass" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "Hourglassに送信" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "发送到Hourglass" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Wyślij do Hourglass" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Send til Hourglass" } }
+      }
+    },
+    "Share report…" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Compartir informe…" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Bericht teilen …" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Compartilhar relatório…" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Condividi il rapporto…" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Partager le rapport…" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "報告を共有…" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "分享报告…" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Udostępnij sprawozdanie…" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Del rapport…" } }
+      }
+    },
+    "Copy report" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Copiar informe" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Bericht kopieren" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Copiar relatório" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Copia il rapporto" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Copier le rapport" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "報告をコピー" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "复制报告" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Kopiuj sprawozdanie" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Kopier rapport" } }
+      }
+    },
+    "Sending opens Hourglass with the report form pre-filled; credited time is included in the remarks. Sharing works with any other reporting app on this phone." : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Al enviar se abre Hourglass con el formulario del informe ya rellenado; el tiempo acreditado se incluye en las observaciones. Compartir funciona con cualquier otra app de informes de este teléfono." } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Beim Senden öffnet sich Hourglass mit dem bereits ausgefüllten Berichtsformular; angerechnete Zeit steht in den Bemerkungen. Teilen funktioniert mit jeder anderen Berichts-App auf diesem Telefon." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Ao enviar, o Hourglass abre com o formulário do relatório já preenchido; o tempo creditado é incluído nas observações. Compartilhar funciona com qualquer outro app de relatórios deste telefone." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "L’invio apre Hourglass con il modulo del rapporto già compilato; il tempo accreditato è incluso nelle osservazioni. La condivisione funziona con qualsiasi altra app per i rapporti su questo telefono." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "L’envoi ouvre Hourglass avec le formulaire du rapport prérempli ; le temps crédité figure dans les remarques. Le partage fonctionne avec toute autre application de rapport sur ce téléphone." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "送信するとHourglassが開き、報告フォームが自動入力されます。クレジット時間は備考に含まれます。共有はこの端末にある他の報告アプリでも使えます。" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "发送时会打开Hourglass并自动填写报告表单；抵算时间包含在备注中。分享功能适用于本机上的任何其他报告应用。" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Wysłanie otwiera Hourglass z wypełnionym formularzem sprawozdania; czas zaliczony jest ujęty w uwagach. Udostępnianie działa z każdą inną aplikacją do sprawozdań na tym telefonie." } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Sending åpner Hourglass med rapportskjemaet ferdig utfylt; godskrevet tid tas med i merknadene. Deling fungerer med alle andre rapportapper på denne telefonen." } }
+      }
+    },
+    "Planned time" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Tiempo planificado" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Geplante Zeit" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Tempo planejado" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Tempo pianificato" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Temps prévu" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "予定時間" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "计划时间" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Zaplanowany czas" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Planlagt tid" } }
+      }
+    },
+    "Confirm time spent" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Confirmar tiempo realizado" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Aufgewendete Zeit bestätigen" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Confirmar tempo realizado" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Conferma il tempo svolto" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Confirmer le temps effectué" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "実際の時間を確定" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "确认已用时间" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Potwierdź wykonany czas" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Bekreft brukt tid" } }
+      }
+    },
+    "Category" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Categoría" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Kategorie" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Categoria" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Categoria" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Catégorie" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "カテゴリー" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "类别" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Kategoria" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Kategori" } }
+      }
+    },
+    "LDC and Bethel time is reported separately as credited hours." : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "El tiempo de LDC y Betel se informa por separado como horas acreditadas." } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "LDC- und Bethel-Zeit wird separat als angerechnete Stunden berichtet." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "O tempo de LDC e Betel é relatado separadamente como horas creditadas." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Il tempo LDC e Betel viene riportato separatamente come ore accreditate." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Le temps LDC et Béthel est indiqué séparément comme heures créditées." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "LDCとベテルの時間はクレジット時間として別に報告されます。" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "LDC和伯特利的时间会作为抵算时间单独报告。" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Czas LDC i Betel jest zgłaszany osobno jako godziny zaliczone." } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "LDC- og Betel-tid rapporteres separat som godskrevne timer." } }
+      }
+    },
+    "Remove entry" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Eliminar entrada" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Eintrag löschen" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Remover entrada" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Rimuovi voce" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Supprimer l’entrée" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "記録を削除" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "删除条目" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Usuń wpis" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Fjern oppføring" } }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Cancelar" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Abbrechen" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Cancelar" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Annulla" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Annuler" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "キャンセル" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "取消" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Anuluj" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Avbryt" } }
+      }
+    },
+    "Save" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Guardar" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Sichern" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Salvar" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Salva" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Enregistrer" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "保存" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "保存" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Zapisz" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Lagre" } }
+      }
+    },
+    "hours" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "horas" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Stunden" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "horas" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "ore" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "heures" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "時間" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "小时" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "godzin" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "timer" } }
+      }
+    },
+    "Service Year" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Año de servicio" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Dienstjahr" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Ano de serviço" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Anno di servizio" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Année de service" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "奉仕年度" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "服务年度" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Rok służbowy" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Tjenesteår" } }
+      }
+    },
+    "Sep %@ – Aug %@" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Sep %@ – Ago %@" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Sep. %@ – Aug. %@" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Set %@ – Ago %@" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Set %@ – Ago %@" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Sept. %@ – Août %@" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%1$@年9月～%2$@年8月" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%1$@年9月–%2$@年8月" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Wrz %@ – Sie %@" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Sep %@ – Aug %@" } }
+      }
+    },
+    "Planned vs. spent per month" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Planificado y realizado por mes" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Geplant vs. geleistet pro Monat" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Planejado vs. realizado por mês" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Pianificato vs. svolto per mese" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Prévu vs effectué par mois" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "月ごとの予定と実績" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每月计划与实际" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Zaplanowane i wykonane wg miesięcy" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Planlagt vs. brukt per måned" } }
+      }
+    },
+    "Credited" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Acreditado" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Angerechnet" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Creditado" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Accreditato" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Crédité" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "クレジット" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "抵算" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Zaliczone" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Godskrevet" } }
+      }
+    },
+    "avg %@h/mo" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "prom. %@ h/mes" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Ø %@ Std./Monat" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "méd. %@ h/mês" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "media %@ h/mese" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "moy. %@ h/mois" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "平均 %@時間/月" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "平均每月%@小时" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "śr. %@ godz./mies." } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "snitt %@ t/mnd." } }
+      }
+    },
+    "%lld h" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%lld時間" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%lld小时" } }
+      }
+    },
+    "%lld min" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%lld分" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%lld分钟" } }
+      }
+    },
+    "%lldh" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%lld時間" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%lld小时" } }
+      }
+    },
+    "%lldm" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%lld分" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%lld分钟" } }
+      }
+    },
+    "%lldh %lldm" : {
+      "localizations" : {
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%1$lld時間%2$lld分" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%1$lld小时%2$lld分钟" } }
+      }
+    },
+    "Exactly as planned." : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Exactamente lo planificado." } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Genau wie geplant." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Exatamente como planejado." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Esattamente come pianificato." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Exactement comme prévu." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "予定どおりです。" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "与计划完全一致。" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Dokładnie zgodnie z planem." } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Akkurat som planlagt." } }
+      }
+    },
+    "%@ more than planned." : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%@ más de lo planificado." } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "%@ mehr als geplant." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "%@ a mais do que o planejado." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "%@ in più rispetto al pianificato." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ de plus que prévu." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "予定より%@多くなっています。" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "比计划多%@。" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "%@ więcej niż zaplanowano." } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "%@ mer enn planlagt." } }
+      }
+    },
+    "%@ less than planned." : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%@ menos de lo planificado." } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "%@ weniger als geplant." } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "%@ a menos do que o planejado." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "%@ in meno rispetto al pianificato." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ de moins que prévu." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "予定より%@少なくなっています。" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "比计划少%@。" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "%@ mniej niż zaplanowano." } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "%@ mindre enn planlagt." } }
+      }
+    },
+    "Field Service Report — %@" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Informe de predicación — %@" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Predigtdienstbericht — %@" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Relatório do ministério de campo — %@" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Rapporto del ministero di campo — %@" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Rapport de prédication — %@" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "野外奉仕報告 — %@" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "传道报告 — %@" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Sprawozdanie ze służby kaznodziejskiej — %@" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Felttjenesterapport — %@" } }
+      }
+    },
+    "Hours: %@" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Horas: %@" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Stunden: %@" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Horas: %@" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Ore: %@" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Heures : %@" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "時間: %@" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "小时：%@" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Godziny: %@" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Timer: %@" } }
+      }
+    },
+    "Credited hours: %@" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Horas acreditadas: %@" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Angerechnete Stunden: %@" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Horas creditadas: %@" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Ore accreditate: %@" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Heures créditées : %@" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "クレジット時間: %@" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "抵算时间：%@" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Godziny zaliczone: %@" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Godskrevne timer: %@" } }
+      }
+    },
+    "  • LDC: %@" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "  • LDC: %@" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "  • LDC: %@" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "  • LDC: %@" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "  • LDC: %@" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "  • LDC : %@" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "  • LDC: %@" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "  • LDC：%@" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "  • LDC: %@" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "  • LDC: %@" } }
+      }
+    },
+    "  • Bethel: %@" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "  • Betel: %@" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "  • Bethel: %@" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "  • Betel: %@" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "  • Betel: %@" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "  • Béthel : %@" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "  • ベテル: %@" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "  • 伯特利：%@" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "  • Betel: %@" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "  • Betel: %@" } }
+      }
+    },
+    "Sent from iMinistry" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Enviado desde iMinistry" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Gesendet mit iMinistry" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Enviado do iMinistry" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Inviato da iMinistry" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Envoyé depuis iMinistry" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "iMinistryから送信" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "发送自iMinistry" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Wysłano z iMinistry" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Sendt fra iMinistry" } }
+      }
+    },
+    "%@ Bethel" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%@ Betel" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "%@ Bethel" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "%@ Betel" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "%@ Betel" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ Béthel" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ベテル%@" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "伯特利%@" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "%@ Betel" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "%@ Betel" } }
+      }
+    },
+    "%@ LDC" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%@ LDC" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "%@ LDC" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "%@ LDC" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "%@ LDC" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ LDC" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "LDC %@" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "LDC %@" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "%@ LDC" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "%@ LDC" } }
+      }
+    },
+    "Credit: %@" : {
+      "localizations" : {
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Crédito: %@" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Angerechnet: %@" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Crédito: %@" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Credito: %@" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Crédit : %@" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "クレジット: %@" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "抵算：%@" } },
+        "pl" : { "stringUnit" : { "state" : "translated", "value" : "Zaliczone: %@" } },
+        "nb" : { "stringUnit" : { "state" : "translated", "value" : "Godskrevet: %@" } }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -48,18 +48,18 @@ struct MonthlyReport {
     /// (the "Credit" field in Hourglass).
     var reportText: String {
         var lines = [
-            "Field Service Report — \(monthName)",
-            "Hours: \(TimeFormat.hm(fieldServiceMinutes))",
-            "Credited hours: \(TimeFormat.hm(creditedMinutes))",
+            String(localized: "Field Service Report — \(monthName)"),
+            String(localized: "Hours: \(TimeFormat.hm(fieldServiceMinutes))"),
+            String(localized: "Credited hours: \(TimeFormat.hm(creditedMinutes))"),
         ]
         if ldcMinutes > 0 {
-            lines.append("  • LDC: \(TimeFormat.hm(ldcMinutes))")
+            lines.append(String(localized: "  • LDC: \(TimeFormat.hm(ldcMinutes))"))
         }
         if bethelMinutes > 0 {
-            lines.append("  • Bethel: \(TimeFormat.hm(bethelMinutes))")
+            lines.append(String(localized: "  • Bethel: \(TimeFormat.hm(bethelMinutes))"))
         }
         lines.append("")
-        lines.append("Sent from iMinistry")
+        lines.append(String(localized: "Sent from iMinistry"))
         return lines.joined(separator: "\n")
     }
 
@@ -73,12 +73,12 @@ struct MonthlyReport {
     var creditRemarks: String {
         var parts: [String] = []
         if bethelMinutes > 0 {
-            parts.append("\(TimeFormat.hm(bethelMinutes)) Bethel")
+            parts.append(String(localized: "\(TimeFormat.hm(bethelMinutes)) Bethel"))
         }
         if ldcMinutes > 0 {
-            parts.append("\(TimeFormat.hm(ldcMinutes)) LDC")
+            parts.append(String(localized: "\(TimeFormat.hm(ldcMinutes)) LDC"))
         }
-        return "Credit: " + parts.joined(separator: ", ")
+        return String(localized: "Credit: \(parts.joined(separator: ", "))")
     }
 }
 

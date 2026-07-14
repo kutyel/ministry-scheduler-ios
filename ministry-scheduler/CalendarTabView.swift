@@ -136,7 +136,7 @@ struct CalendarTabView: View {
         .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 16))
     }
 
-    private func statBlock(_ title: String, _ value: String, _ color: Color) -> some View {
+    private func statBlock(_ title: LocalizedStringKey, _ value: String, _ color: Color) -> some View {
         VStack(spacing: 2) {
             Text(title)
                 .font(.caption)
@@ -223,7 +223,7 @@ struct CalendarTabView: View {
         .foregroundStyle(.secondary)
     }
 
-    private func legendDot(_ color: Color, _ label: String) -> some View {
+    private func legendDot(_ color: Color, _ label: LocalizedStringKey) -> some View {
         HStack(spacing: 4) {
             Circle().fill(color).frame(width: 8, height: 8)
             Text(label)
@@ -395,9 +395,9 @@ private struct DayEditorSheet: View {
 
     private var comparisonFooter: String {
         let diff = actualMinutes - plannedMinutes
-        if diff == 0 { return "Exactly as planned." }
-        if diff > 0 { return "\(TimeFormat.hm(diff)) more than planned." }
-        return "\(TimeFormat.hm(-diff)) less than planned."
+        if diff == 0 { return String(localized: "Exactly as planned.") }
+        if diff > 0 { return String(localized: "\(TimeFormat.hm(diff)) more than planned.") }
+        return String(localized: "\(TimeFormat.hm(-diff)) less than planned.")
     }
 
     private func save() {
@@ -511,7 +511,7 @@ struct DurationPicker: View {
 struct GoalEditorSheet: View {
     @Environment(\.dismiss) private var dismiss
 
-    let title: String
+    let title: LocalizedStringKey
     let initialMinutes: Int
     let onSave: (Int) -> Void
 

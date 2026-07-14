@@ -91,14 +91,14 @@ final class ServiceYearGoal {
 }
 
 enum TimeFormat {
-    /// "3h 30m", "3h", "45m", "0h"
+    /// "3h 30m", "3h", "45m", "0h" — unit suffixes localized (e.g. 時間/分).
     static func hm(_ minutes: Int) -> String {
         let h = minutes / 60
         let m = minutes % 60
         switch (h, m) {
-        case (_, 0): return "\(h)h"
-        case (0, _): return "\(m)m"
-        default: return "\(h)h \(m)m"
+        case (_, 0): return String(localized: "\(h)h")
+        case (0, _): return String(localized: "\(m)m")
+        default: return String(localized: "\(h)h \(m)m")
         }
     }
 
