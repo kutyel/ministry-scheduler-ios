@@ -41,11 +41,16 @@ struct CalendarTabView: View {
         MonthlyReport(year: displayedYear, month: displayedMonth, entries: entries)
     }
 
+    private var balance: MonthBalance {
+        MonthBalance(year: displayedYear, month: displayedMonth, entries: entries, calendar: calendar)
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 16) {
                     summaryHeader
+                    BalanceCard(balance: balance, goalMinutes: goalMinutes, calendar: calendar)
                     monthNavigator
                     calendarGrid
                     legend
@@ -189,6 +194,7 @@ struct CalendarTabView: View {
 
     private var calendarGrid: some View {
         let grid = MonthGrid(year: displayedYear, month: displayedMonth, calendar: calendar)
+        let compensation = balance.compensation
 
         return LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: 7), spacing: 4) {
             ForEach(grid.weekdaySymbols.indices, id: \.self) { index in
@@ -199,12 +205,13 @@ struct CalendarTabView: View {
             ForEach(grid.cells) { cell in
                 switch cell {
                 case .blank:
-                    Color.clear.frame(height: 52)
+                    Color.clear.frame(height: DayCell.height)
                 case .day(let day):
                     DayCell(
                         day: day,
                         entry: monthEntries.first { $0.day == day },
-                        isToday: grid.isToday(day: day)
+                        isToday: grid.isToday(day: day),
+                        extraMinutes: compensation[day]
                     )
                     .onTapGesture { selectedDay = day }
                 }
@@ -218,6 +225,12 @@ struct CalendarTabView: View {
             legendDot(.blue, "Planned")
             legendDot(.green, "Done")
             legendDot(.orange, "Under")
+            HStack(spacing: 4) {
+                RoundedRectangle(cornerRadius: 2)
+                    .strokeBorder(Color.orange, style: StrokeStyle(lineWidth: 1, dash: [2, 2]))
+                    .frame(width: 10, height: 10)
+                Text("Catch up")
+            }
         }
         .font(.caption)
         .foregroundStyle(.secondary)
@@ -251,6 +264,17 @@ private struct DayCell: View {
     let day: Int
     let entry: DayEntry?
     let isToday: Bool
+    /// Suggested extra minutes to recover time lost earlier in the month.
+    var extraMinutes: Int?
+
+    static let height: CGFloat = 60
+
+    /// Confirmed minus planned time, only for confirmed days that drifted.
+    private var deviation: Int? {
+        guard let entry, let actual = entry.actualMinutes else { return nil }
+        let diff = actual - entry.plannedMinutes
+        return diff == 0 ? nil : diff
+    }
 
     private var status: (color: Color, label: String?) {
         guard let entry else { return (.clear, nil) }
@@ -283,9 +307,22 @@ private struct DayCell: View {
                         .minimumScaleFactor(0.7)
                 }
             }
+            if let deviation {
+                Text(MonthBalance.signed(deviation))
+                    .font(.system(size: 8, weight: .bold))
+                    .foregroundStyle(deviation > 0 ? .green : .orange)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+            } else if let extraMinutes {
+                Text(MonthBalance.signed(extraMinutes))
+                    .font(.system(size: 8, weight: .bold))
+                    .foregroundStyle(.orange)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+            }
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 52)
+        .frame(height: Self.height)
         .background(
             RoundedRectangle(cornerRadius: 8)
                 .fill(status.color == .clear ? Color(.systemGray6) : status.color.opacity(0.15))
@@ -294,7 +331,135 @@ private struct DayCell: View {
             RoundedRectangle(cornerRadius: 8)
                 .stroke(isToday ? Color.accentColor : .clear, lineWidth: 1.5)
         )
+        .overlay {
+            if extraMinutes != nil && !isToday {
+                RoundedRectangle(cornerRadius: 8)
+                    .strokeBorder(Color.orange, style: StrokeStyle(lineWidth: 1.5, dash: [3, 3]))
+            }
+        }
         .contentShape(RoundedRectangle(cornerRadius: 8))
+    }
+}
+
+// MARK: - Balance
+
+/// Shows at a glance how far the confirmed days drifted from the schedule,
+/// where the projection lands against the goal, and when to catch up.
+private struct BalanceCard: View {
+    let balance: MonthBalance
+    let goalMinutes: Int
+    let calendar: Calendar
+
+    private var hasData: Bool {
+        balance.confirmedPlannedMinutes > 0 || balance.confirmedActualMinutes > 0
+            || !balance.pendingDays.isEmpty
+    }
+
+    /// The whole month is before today, so nothing can be rescheduled.
+    private var monthIsOver: Bool {
+        let now = calendar.dateComponents([.year, .month], from: .now)
+        return (balance.year, balance.month) < (now.year!, now.month!)
+    }
+
+    private var color: Color {
+        switch balance.deviationMinutes {
+        case ..<0: return .orange
+        case 1...: return .green
+        default: return .blue
+        }
+    }
+
+    private var icon: String {
+        switch balance.deviationMinutes {
+        case ..<0: return "arrow.down.right.circle.fill"
+        case 1...: return "arrow.up.right.circle.fill"
+        default: return "checkmark.circle.fill"
+        }
+    }
+
+    private var headline: String {
+        let diff = balance.deviationMinutes
+        if diff < 0 { return String(localized: "\(TimeFormat.hm(-diff)) behind schedule") }
+        if diff > 0 { return String(localized: "\(TimeFormat.hm(diff)) ahead of schedule") }
+        return String(localized: "On schedule")
+    }
+
+    private func dayName(_ day: Int) -> String {
+        let date = calendar.date(from: DateComponents(year: balance.year, month: balance.month, day: day))!
+        return date.formatted(.dateTime.weekday(.wide).day())
+    }
+
+    private var advice: String {
+        let diff = balance.deviationMinutes
+        if diff > 0 {
+            return String(localized: "You have \(TimeFormat.hm(diff)) of margin. You can do less on an upcoming day if you need to.")
+        }
+        if diff == 0 {
+            return String(localized: "Your confirmed days match the plan.")
+        }
+        if monthIsOver {
+            return String(localized: "This month ended \(TimeFormat.hm(-diff)) below the schedule.")
+        }
+        if let next = balance.compensation.keys.min() {
+            let extra = TimeFormat.hm(balance.compensation[next]!)
+            var text = String(localized: "To catch up, add the time shown in orange to the marked days. Next: \(dayName(next)), +\(extra).")
+            if balance.uncompensatedMinutes > 0 {
+                text += " " + String(localized: "\(TimeFormat.hm(balance.uncompensatedMinutes)) does not fit in your planned days. Plan it on a free day.")
+            }
+            return text
+        }
+        return String(localized: "No planned days left this month. Plan \(TimeFormat.hm(-diff)) more on a free day to catch up.")
+    }
+
+    var body: some View {
+        if hasData {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(spacing: 10) {
+                    Image(systemName: icon)
+                        .font(.title)
+                        .foregroundStyle(color)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Balance vs. schedule")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Text(headline)
+                            .font(.title3.bold())
+                            .foregroundStyle(color)
+                    }
+                    Spacer()
+                }
+                .accessibilityElement(children: .combine)
+                .accessibilityIdentifier("balanceHeadline")
+
+                Text(advice)
+                    .font(.footnote)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                if !monthIsOver {
+                    let projected = balance.projectedMinutes
+                    Label(
+                        String(localized: "Projected: \(TimeFormat.hm(projected)) of \(TimeFormat.hm(goalMinutes))"),
+                        systemImage: projected >= goalMinutes ? "flag.checkered" : "flag"
+                    )
+                    .font(.footnote)
+                    .foregroundStyle(projected >= goalMinutes ? .green : .secondary)
+                }
+
+                if !balance.pendingDays.isEmpty {
+                    let days = balance.pendingDays.map { String($0) }
+                        .formatted(.list(type: .and))
+                    Label(
+                        String(localized: "Not confirmed yet: \(days). Confirm them to keep the balance accurate."),
+                        systemImage: "questionmark.circle"
+                    )
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                }
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(color.opacity(0.12), in: RoundedRectangle(cornerRadius: 16))
+        }
     }
 }
 
