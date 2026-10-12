@@ -37,6 +37,15 @@ struct ministry_schedulerApp: App {
             return container
         }
 
+        // Screenshot mode: a separate in-memory store with sample data,
+        // so the real store is never read or written.
+        if DemoData.isEnabled {
+            let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+            let container = try! ModelContainer(for: schema, configurations: [configuration])
+            DemoData.seed(into: ModelContext(container))
+            return container
+        }
+
         do {
             let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
             return try ModelContainer(for: schema, configurations: [configuration])

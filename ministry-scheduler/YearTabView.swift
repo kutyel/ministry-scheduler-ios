@@ -16,7 +16,7 @@ struct YearTabView: View {
     @State private var editingGoal = false
 
     init() {
-        _startYear = State(initialValue: ServiceYear.startYear(containing: .now))
+        _startYear = State(initialValue: DemoData.serviceYear ?? ServiceYear.startYear(containing: .now))
     }
 
     private var goalMinutes: Int {

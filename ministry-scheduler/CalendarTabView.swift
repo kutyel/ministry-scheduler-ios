@@ -22,7 +22,7 @@ struct CalendarTabView: View {
     init() {
         let comps = Calendar.current.dateComponents([.year, .month], from: .now)
         _displayedYear = State(initialValue: comps.year!)
-        _displayedMonth = State(initialValue: comps.month!)
+        _displayedMonth = State(initialValue: DemoData.month ?? comps.month!)
     }
 
     private var monthEntries: [DayEntry] {
@@ -58,6 +58,10 @@ struct CalendarTabView: View {
                 .padding()
             }
             .navigationTitle("Schedule")
+            .onAppear {
+                if DemoData.opensReport { showingReport = true }
+                if let day = DemoData.day { selectedDay = day }
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
@@ -77,7 +81,7 @@ struct CalendarTabView: View {
                     day: day,
                     entry: monthEntries.first { $0.day == day }
                 )
-                .presentationDetents([.medium, .large])
+                .presentationDetents(DemoData.day != nil ? [.large] : [.medium, .large])
             }
             .sheet(isPresented: $editingGoal) {
                 GoalEditorSheet(
@@ -89,7 +93,7 @@ struct CalendarTabView: View {
             }
             .sheet(isPresented: $showingReport) {
                 MonthReportSheet(report: report)
-                    .presentationDetents([.medium, .large])
+                    .presentationDetents(DemoData.opensReport ? [.large] : [.medium, .large])
             }
         }
     }

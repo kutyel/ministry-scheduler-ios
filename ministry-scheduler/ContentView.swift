@@ -9,12 +9,14 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @State private var selectedTab = DemoData.tab ?? "calendar"
+
     var body: some View {
-        TabView {
-            Tab("Calendar", systemImage: "calendar") {
+        TabView(selection: $selectedTab) {
+            Tab("Calendar", systemImage: "calendar", value: "calendar") {
                 CalendarTabView()
             }
-            Tab("Year", systemImage: "chart.bar.fill") {
+            Tab("Year", systemImage: "chart.bar.fill", value: "year") {
                 YearTabView()
             }
         }

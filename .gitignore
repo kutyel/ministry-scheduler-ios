@@ -1,0 +1,4 @@
+
+# App Store screenshot working files; only the approved set is kept.
+/screenshots/*
+!/screenshots/final/
