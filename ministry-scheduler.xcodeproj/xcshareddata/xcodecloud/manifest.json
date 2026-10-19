@@ -1,0 +1,9 @@
+{
+  "id" : "b4db6605-e9e6-44a3-b8db-cfdf3154a17f",
+  "targets" : [
+    {
+      "id" : "4977542d-1b0c-4c1b-9f96-d29872b04f30",
+      "name" : "ministry-scheduler"
+    }
+  ]
+}
