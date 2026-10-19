@@ -32,6 +32,16 @@ struct MonthlyReportTests {
         #expect(report.totalMinutes == 420)
     }
 
+    @Test func reportsTwoTypesOnTheSameDaySeparately() {
+        let report = MonthlyReport(year: 2026, month: 7, entries: [
+            DayEntry(year: 2026, month: 7, day: 10, plannedMinutes: 480, actualMinutes: 480, category: .bethel),
+            DayEntry(year: 2026, month: 7, day: 10, plannedMinutes: 180, actualMinutes: 180, category: .fieldService),
+        ])
+        #expect(report.bethelMinutes == 480)
+        #expect(report.fieldServiceMinutes == 180)
+        #expect(report.totalMinutes == 660)
+    }
+
     @Test func reportTextSeparatesCreditedHours() {
         let report = MonthlyReport(year: 2026, month: 7, entries: makeEntries())
         let text = report.reportText

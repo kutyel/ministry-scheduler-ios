@@ -56,6 +56,48 @@ struct MonthBalanceTests {
         #expect(b.upcomingPlannedMinutes == 0)
     }
 
+    @Test func multipleTypesOnOneDayCountAsOnePendingDay() {
+        let b = balance([
+            DayEntry(year: 2026, month: 7, day: 3, plannedMinutes: 480, category: .bethel),
+            DayEntry(year: 2026, month: 7, day: 3, plannedMinutes: 180),
+        ])
+        #expect(b.pendingDays == [3])
+    }
+
+    @Test func compensationRespectsTheCombinedDayLimit() {
+        let b = balance([
+            DayEntry(year: 2026, month: 7, day: 1, plannedMinutes: 60, actualMinutes: 30),
+            DayEntry(year: 2026, month: 7, day: 12, plannedMinutes: 480, category: .bethel),
+            DayEntry(year: 2026, month: 7, day: 12, plannedMinutes: 945),
+        ])
+        #expect(b.upcomingPlannedMinutes == 1425)
+        #expect(b.compensation == [12: 15])
+        #expect(b.uncompensatedMinutes == 15)
+    }
+
+    @Test func extraPlannedTimeCoversTheDeficit() {
+        let entries = [
+            DayEntry(year: 2026, month: 7, day: 1, plannedMinutes: 240, actualMinutes: 0),
+            DayEntry(year: 2026, month: 7, day: 12, plannedMinutes: 480, category: .bethel),
+            DayEntry(year: 2026, month: 7, day: 12, plannedMinutes: 240),
+        ]
+        let b = MonthBalance(year: 2026, month: 7, entries: entries, goalMinutes: 720, now: now, calendar: calendar)
+        #expect(b.deviationMinutes == -240)
+        #expect(b.compensation.isEmpty)
+        #expect(b.coveredByPlanMinutes == 240)
+        #expect(b.uncompensatedMinutes == 0)
+    }
+
+    @Test func partlyPlannedExtraLeavesTheRestToCompensate() {
+        let entries = [
+            DayEntry(year: 2026, month: 7, day: 1, plannedMinutes: 240, actualMinutes: 0),
+            DayEntry(year: 2026, month: 7, day: 12, plannedMinutes: 600),
+        ]
+        let b = MonthBalance(year: 2026, month: 7, entries: entries, goalMinutes: 720, now: now, calendar: calendar)
+        #expect(b.coveredByPlanMinutes == 120)
+        #expect(b.compensation == [12: 120])
+    }
+
     @Test func aheadOfScheduleNeedsNoCompensation() {
         let b = balance([
             DayEntry(year: 2026, month: 7, day: 1, plannedMinutes: 60, actualMinutes: 120),

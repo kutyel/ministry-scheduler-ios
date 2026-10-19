@@ -42,7 +42,10 @@ struct CalendarTabView: View {
     }
 
     private var balance: MonthBalance {
-        MonthBalance(year: displayedYear, month: displayedMonth, entries: entries, calendar: calendar)
+        MonthBalance(
+            year: displayedYear, month: displayedMonth, entries: entries,
+            goalMinutes: goalMinutes, calendar: calendar
+        )
     }
 
     var body: some View {
@@ -79,7 +82,7 @@ struct CalendarTabView: View {
                     year: displayedYear,
                     month: displayedMonth,
                     day: day,
-                    entry: monthEntries.first { $0.day == day }
+                    entries: monthEntries.filter { $0.day == day }
                 )
                 .presentationDetents(DemoData.day != nil ? [.large] : [.medium, .large])
             }
@@ -213,7 +216,7 @@ struct CalendarTabView: View {
                 case .day(let day):
                     DayCell(
                         day: day,
-                        entry: monthEntries.first { $0.day == day },
+                        entries: monthEntries.filter { $0.day == day },
                         isToday: grid.isToday(day: day),
                         extraMinutes: compensation[day]
                     )
@@ -266,7 +269,7 @@ extension Int: @retroactive Identifiable {
 
 private struct DayCell: View {
     let day: Int
-    let entry: DayEntry?
+    let entries: [DayEntry]
     let isToday: Bool
     /// Suggested extra minutes to recover time lost earlier in the month.
     var extraMinutes: Int?
@@ -275,19 +278,21 @@ private struct DayCell: View {
 
     /// Confirmed minus planned time, only for confirmed days that drifted.
     private var deviation: Int? {
-        guard let entry, let actual = entry.actualMinutes else { return nil }
-        let diff = actual - entry.plannedMinutes
+        guard !entries.isEmpty, entries.allSatisfy({ $0.actualMinutes != nil }) else { return nil }
+        let diff = entries.reduce(0) { $0 + ($1.actualMinutes! - $1.plannedMinutes) }
         return diff == 0 ? nil : diff
     }
 
     private var status: (color: Color, label: String?) {
-        guard let entry else { return (.clear, nil) }
-        if let actual = entry.actualMinutes {
-            let color: Color = actual >= entry.plannedMinutes ? .green : .orange
+        guard !entries.isEmpty else { return (.clear, nil) }
+        let planned = entries.reduce(0) { $0 + $1.plannedMinutes }
+        if entries.allSatisfy({ $0.actualMinutes != nil }) {
+            let actual = entries.reduce(0) { $0 + $1.actualMinutes! }
+            let color: Color = actual >= planned ? .green : .orange
             return (color, TimeFormat.hm(actual))
         }
-        if entry.plannedMinutes > 0 {
-            return (.blue, TimeFormat.hm(entry.plannedMinutes))
+        if planned > 0 {
+            return (.blue, TimeFormat.hm(planned))
         }
         return (.clear, nil)
     }
@@ -299,10 +304,12 @@ private struct DayCell: View {
                 .foregroundStyle(isToday ? Color.accentColor : .primary)
             if let label = status.label {
                 HStack(spacing: 2) {
-                    if let entry, entry.category.isCredited {
-                        Image(systemName: entry.category == .ldc ? "hammer.fill" : "building.2.fill")
-                            .font(.system(size: 7))
-                            .foregroundStyle(.purple)
+                    ForEach([HourCategory.ldc, .bethel], id: \.self) { category in
+                        if entries.contains(where: { $0.category == category }) {
+                            Image(systemName: category == .ldc ? "hammer.fill" : "building.2.fill")
+                                .font(.system(size: 7))
+                                .foregroundStyle(.purple)
+                        }
                     }
                     Text(label)
                         .font(.system(size: 9, weight: .semibold))
@@ -412,6 +419,9 @@ private struct BalanceCard: View {
             }
             return text
         }
+        if balance.coveredByPlanMinutes > 0 {
+            return String(localized: "You already planned enough extra time to reach your goal.")
+        }
         return String(localized: "No planned days left this month. Plan \(TimeFormat.hm(-diff)) more on a free day to catch up.")
     }
 
@@ -469,6 +479,31 @@ private struct BalanceCard: View {
 
 // MARK: - Day editor
 
+private struct ActivityDraft: Identifiable {
+    let id = UUID()
+    let entry: DayEntry?
+    let category: HourCategory
+    var plannedMinutes: Int
+    var confirmActual: Bool
+    var actualMinutes: Int
+
+    init(entry: DayEntry) {
+        self.entry = entry
+        category = entry.category
+        plannedMinutes = entry.plannedMinutes
+        confirmActual = entry.actualMinutes != nil
+        actualMinutes = entry.actualMinutes ?? entry.plannedMinutes
+    }
+
+    init(category: HourCategory) {
+        entry = nil
+        self.category = category
+        plannedMinutes = 0
+        confirmActual = false
+        actualMinutes = 0
+    }
+}
+
 private struct DayEditorSheet: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
@@ -476,32 +511,18 @@ private struct DayEditorSheet: View {
     let year: Int
     let month: Int
     let day: Int
-    let entry: DayEntry?
+    let entries: [DayEntry]
 
-    @State private var plannedMinutes: Int
-    @State private var confirmActual: Bool
-    @State private var actualMinutes: Int
-    @State private var category: HourCategory
+    @State private var activities: [ActivityDraft]
 
-    init(year: Int, month: Int, day: Int, entry: DayEntry?) {
+    init(year: Int, month: Int, day: Int, entries: [DayEntry]) {
         self.year = year
         self.month = month
         self.day = day
-        self.entry = entry
-        _plannedMinutes = State(initialValue: entry?.plannedMinutes ?? 0)
-        _confirmActual = State(initialValue: entry?.actualMinutes != nil)
-        _actualMinutes = State(initialValue: entry?.actualMinutes ?? entry?.plannedMinutes ?? 0)
-        _category = State(initialValue: entry?.category ?? .fieldService)
-    }
-
-    /// Binding for one credited-category toggle. LDC and Bethel are mutually
-    /// exclusive: turning one on replaces the other, turning it off returns
-    /// the day to regular field service time.
-    private func creditedToggle(_ target: HourCategory) -> Binding<Bool> {
-        Binding(
-            get: { category == target },
-            set: { category = $0 ? target : .fieldService }
-        )
+        self.entries = entries
+        _activities = State(initialValue: entries.isEmpty
+            ? [ActivityDraft(category: .fieldService)]
+            : entries.sorted { $0.category.sortOrder < $1.category.sortOrder }.map { ActivityDraft(entry: $0) })
     }
 
     private var dateTitle: String {
@@ -512,45 +533,50 @@ private struct DayEditorSheet: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Planned time") {
-                    DurationPicker(minutes: $plannedMinutes)
-                }
-                Section {
-                    Toggle("Confirm time spent", isOn: $confirmActual.animation())
-                    if confirmActual {
-                        DurationPicker(minutes: $actualMinutes)
-                    }
-                } footer: {
-                    if confirmActual {
-                        Text(comparisonFooter)
-                    }
-                }
-                Section {
-                    Toggle("LDC", isOn: creditedToggle(.ldc))
-                    Toggle("Bethel", isOn: creditedToggle(.bethel))
-                } header: {
-                    Text("Category")
-                } footer: {
-                    Text("LDC and Bethel time is reported separately as credited hours.")
-                }
-                if entry != nil {
+                ForEach($activities) { activity in
                     Section {
-                        Button("Remove entry", role: .destructive) {
-                            if let entry { modelContext.delete(entry) }
-                            dismiss()
+                        LabeledContent("Planned time", value: TimeFormat.hm(activity.wrappedValue.plannedMinutes))
+                        DurationPicker(minutes: activity.plannedMinutes)
+                        Toggle("Confirm time spent", isOn: activity.confirmActual.animation())
+                        if activity.wrappedValue.confirmActual {
+                            DurationPicker(minutes: activity.actualMinutes)
+                            Text(comparisonFooter(for: activity.wrappedValue))
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                        }
+                        if activity.wrappedValue.entry != nil || activities.count > 1
+                            || activity.wrappedValue.category != .fieldService {
+                            Button("Remove entry", role: .destructive) {
+                                remove(activity.wrappedValue.id)
+                            }
+                        }
+                    } header: {
+                        Text(activity.wrappedValue.category.label)
+                    }
+                    .onChange(of: activity.wrappedValue.confirmActual) { _, isOn in
+                        if isOn && activity.wrappedValue.entry?.actualMinutes == nil {
+                            activity.wrappedValue.actualMinutes = activity.wrappedValue.plannedMinutes
+                        }
+                    }
+                }
+                if !availableCategories.isEmpty {
+                    Section {
+                        Menu {
+                            ForEach(availableCategories, id: \.self) { category in
+                                Button(category.label) { add(category) }
+                            }
+                        } label: {
+                            if activities.isEmpty {
+                                Label("Add activity", systemImage: "plus.circle.fill")
+                            } else {
+                                Label("Add another activity", systemImage: "plus.circle.fill")
+                            }
                         }
                     }
                 }
             }
             .navigationTitle(dateTitle)
             .navigationBarTitleDisplayMode(.inline)
-            .onChange(of: confirmActual) { _, isOn in
-                // Default the confirmed time to whatever is currently planned,
-                // unless this day already has a recorded actual time.
-                if isOn && entry?.actualMinutes == nil {
-                    actualMinutes = plannedMinutes
-                }
-            }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
@@ -562,29 +588,54 @@ private struct DayEditorSheet: View {
         }
     }
 
-    private var comparisonFooter: String {
-        let diff = actualMinutes - plannedMinutes
+    private var availableCategories: [HourCategory] {
+        HourCategory.allCases.filter { category in
+            !activities.contains { $0.category == category }
+        }
+    }
+
+    private func add(_ category: HourCategory) {
+        // Replace the untouched default field-service form when a different
+        // category is the first activity the user chooses.
+        if activities.count == 1, let only = activities.first,
+           only.entry == nil, only.plannedMinutes == 0, !only.confirmActual {
+            activities = [ActivityDraft(category: category)]
+        } else {
+            activities.append(ActivityDraft(category: category))
+        }
+    }
+
+    private func remove(_ id: UUID) {
+        activities.removeAll { $0.id == id }
+    }
+
+    private func comparisonFooter(for activity: ActivityDraft) -> String {
+        let diff = activity.actualMinutes - activity.plannedMinutes
         if diff == 0 { return String(localized: "Exactly as planned.") }
         if diff > 0 { return String(localized: "\(TimeFormat.hm(diff)) more than planned.") }
         return String(localized: "\(TimeFormat.hm(-diff)) less than planned.")
     }
 
     private func save() {
-        let actual: Int? = confirmActual ? actualMinutes : nil
-        if let entry {
-            if plannedMinutes == 0 && actual == nil {
-                modelContext.delete(entry)
-            } else {
-                entry.plannedMinutes = plannedMinutes
-                entry.actualMinutes = actual
-                entry.category = category
+        for entry in entries where !activities.contains(where: { $0.entry === entry }) {
+            modelContext.delete(entry)
+        }
+        for activity in activities {
+            let actual: Int? = activity.confirmActual ? activity.actualMinutes : nil
+            if let entry = activity.entry {
+                if activity.plannedMinutes == 0 && actual == nil {
+                    modelContext.delete(entry)
+                } else {
+                    entry.plannedMinutes = activity.plannedMinutes
+                    entry.actualMinutes = actual
+                }
+            } else if activity.plannedMinutes > 0 || actual != nil {
+                modelContext.insert(DayEntry(
+                    year: year, month: month, day: day,
+                    plannedMinutes: activity.plannedMinutes, actualMinutes: actual,
+                    category: activity.category
+                ))
             }
-        } else if plannedMinutes > 0 || actual != nil {
-            modelContext.insert(DayEntry(
-                year: year, month: month, day: day,
-                plannedMinutes: plannedMinutes, actualMinutes: actual,
-                category: category
-            ))
         }
         dismiss()
     }

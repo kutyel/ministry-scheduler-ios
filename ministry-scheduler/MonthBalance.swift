@@ -11,6 +11,10 @@ import Foundation
 /// Only confirmed days count toward the balance: a day with `actualMinutes`
 /// is compared against its own `plannedMinutes`. Planned days in the past
 /// that were never confirmed are reported as pending, not as missed time.
+///
+/// When a goal is given, extra time the user already planned counts as
+/// compensation: only the part of the deficit that would still leave the
+/// projection below the goal is suggested.
 struct MonthBalance {
     let year: Int
     let month: Int
@@ -28,6 +32,9 @@ struct MonthBalance {
     let compensation: [Int: Int]
     /// Deficit that cannot be placed because no planned day is left this month.
     let uncompensatedMinutes: Int
+    /// Part of the deficit already covered by extra planned time, i.e. the
+    /// upcoming plan reaches the goal without the full compensation.
+    let coveredByPlanMinutes: Int
 
     /// Positive when ahead of the schedule, negative when behind.
     var deviationMinutes: Int { confirmedActualMinutes - confirmedPlannedMinutes }
@@ -46,7 +53,7 @@ struct MonthBalance {
     static let step = 5
     private static let maxDayMinutes = 24 * 60
 
-    init(year: Int, month: Int, entries: [DayEntry], now: Date = .now, calendar: Calendar = .current) {
+    init(year: Int, month: Int, entries: [DayEntry], goalMinutes: Int? = nil, now: Date = .now, calendar: Calendar = .current) {
         self.year = year
         self.month = month
 
@@ -59,30 +66,39 @@ struct MonthBalance {
 
         var plannedDone = 0
         var actualDone = 0
-        var upcoming: [DayEntry] = []
-        var pending: [Int] = []
+        var upcoming: [Int: Int] = [:]
+        var pending: Set<Int> = []
+        var plannedByDay: [Int: Int] = [:]
         for entry in monthEntries {
+            plannedByDay[entry.day, default: 0] += entry.plannedMinutes
             if let actual = entry.actualMinutes {
                 plannedDone += entry.plannedMinutes
                 actualDone += actual
             } else if entry.plannedMinutes > 0 {
                 if isPast(entry.day) {
-                    pending.append(entry.day)
+                    pending.insert(entry.day)
                 } else {
-                    upcoming.append(entry)
+                    upcoming[entry.day, default: 0] += entry.plannedMinutes
                 }
             }
         }
-        upcoming.sort { $0.day < $1.day }
 
         self.confirmedPlannedMinutes = plannedDone
         self.confirmedActualMinutes = actualDone
-        self.upcomingPlannedMinutes = upcoming.reduce(0) { $0 + $1.plannedMinutes }
+        self.upcomingPlannedMinutes = upcoming.values.reduce(0, +)
         self.pendingDays = pending.sorted()
 
+        let deficit = max(0, plannedDone - actualDone)
+        var toPlace = deficit
+        if let goalMinutes {
+            let shortOfGoal = max(0, goalMinutes - actualDone - self.upcomingPlannedMinutes)
+            toPlace = min(deficit, shortOfGoal)
+        }
+        self.coveredByPlanMinutes = deficit - toPlace
+
         let (compensation, rest) = Self.spread(
-            deficit: max(0, plannedDone - actualDone),
-            over: upcoming.map { (day: $0.day, planned: $0.plannedMinutes) }
+            deficit: toPlace,
+            over: upcoming.keys.sorted().map { (day: $0, planned: plannedByDay[$0]!) }
         )
         self.compensation = compensation
         self.uncompensatedMinutes = rest

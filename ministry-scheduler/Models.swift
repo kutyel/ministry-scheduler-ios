@@ -16,16 +16,25 @@ enum HourCategory: String, CaseIterable, Codable {
 
     var isCredited: Bool { self != .fieldService }
 
+    var sortOrder: Int {
+        switch self {
+        case .fieldService: return 0
+        case .ldc: return 1
+        case .bethel: return 2
+        }
+    }
+
     var label: String {
         switch self {
-        case .fieldService: return "Field service"
-        case .ldc: return "LDC"
-        case .bethel: return "Bethel"
+        case .fieldService: return String(localized: "Field service")
+        case .ldc: return String(localized: "LDC")
+        case .bethel: return String(localized: "Bethel")
         }
     }
 }
 
-/// Time planned (and optionally confirmed) for a single calendar day.
+/// Time planned (and optionally confirmed) for one category on a calendar day.
+/// A day can have separate entries for field service, LDC, and Bethel.
 @Model
 final class DayEntry {
     var year: Int
