@@ -12,12 +12,17 @@ import Foundation
 /// is compared against its own `plannedMinutes`. Planned days in the past
 /// that were never confirmed are reported as pending, not as missed time.
 ///
-/// When a goal is given, extra time the user already planned counts as
-/// compensation: only the part of the deficit that would still leave the
-/// projection below the goal is suggested.
+/// When a goal is given, the goal is what counts, not the plan: the balance
+/// compares the projection (spent time plus upcoming planned time) with the
+/// goal, so planning more than the goal (e.g. to get ahead before a busy
+/// month) is never reported as being behind. Extra time the user already
+/// planned also counts as compensation: only the part of the deficit that
+/// would still leave the projection below the goal is suggested.
 struct MonthBalance {
     let year: Int
     let month: Int
+    /// Monthly goal the balance is measured against, if any.
+    let goalMinutes: Int?
 
     /// Planned minutes of the days that are already confirmed.
     let confirmedPlannedMinutes: Int
@@ -36,8 +41,17 @@ struct MonthBalance {
     /// upcoming plan reaches the goal without the full compensation.
     let coveredByPlanMinutes: Int
 
-    /// Positive when ahead of the schedule, negative when behind.
-    var deviationMinutes: Int { confirmedActualMinutes - confirmedPlannedMinutes }
+    /// Positive when the confirmed days exceed their plan, negative when
+    /// they fell short of it.
+    var scheduleDeviationMinutes: Int { confirmedActualMinutes - confirmedPlannedMinutes }
+
+    /// Positive when ahead, negative when behind. With a goal, this is the
+    /// planned projection (without compensation) minus the goal; without
+    /// one, it is the drift from the schedule.
+    var deviationMinutes: Int {
+        guard let goalMinutes else { return scheduleDeviationMinutes }
+        return confirmedActualMinutes + upcomingPlannedMinutes - goalMinutes
+    }
 
     /// Spent time plus everything still planned, including compensation.
     var projectedMinutes: Int {
@@ -56,6 +70,7 @@ struct MonthBalance {
     init(year: Int, month: Int, entries: [DayEntry], goalMinutes: Int? = nil, now: Date = .now, calendar: Calendar = .current) {
         self.year = year
         self.month = month
+        self.goalMinutes = goalMinutes
 
         let monthEntries = entries.filter { $0.year == year && $0.month == month }
         let today = calendar.dateComponents([.year, .month, .day], from: now)

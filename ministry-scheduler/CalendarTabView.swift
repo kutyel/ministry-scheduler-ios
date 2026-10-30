@@ -388,11 +388,13 @@ private struct BalanceCard: View {
         }
     }
 
+    /// Measured against the monthly goal, not the plan: planning more than
+    /// the goal to get ahead is not being behind.
     private var headline: String {
         let diff = balance.deviationMinutes
-        if diff < 0 { return String(localized: "\(TimeFormat.hm(-diff)) behind schedule") }
-        if diff > 0 { return String(localized: "\(TimeFormat.hm(diff)) ahead of schedule") }
-        return String(localized: "On schedule")
+        if diff < 0 { return String(localized: "\(TimeFormat.hm(-diff)) behind goal") }
+        if diff > 0 { return String(localized: "\(TimeFormat.hm(diff)) ahead of goal") }
+        return String(localized: "On track for your goal")
     }
 
     private func dayName(_ day: Int) -> String {
@@ -406,23 +408,22 @@ private struct BalanceCard: View {
             return String(localized: "You have \(TimeFormat.hm(diff)) of margin. You can do less on an upcoming day if you need to.")
         }
         if diff == 0 {
-            return String(localized: "Your confirmed days match the plan.")
+            return String(localized: "Your plan reaches your goal exactly.")
         }
         if monthIsOver {
-            return String(localized: "This month ended \(TimeFormat.hm(-diff)) below the schedule.")
+            return String(localized: "This month ended \(TimeFormat.hm(-diff)) below your goal.")
         }
+        // Part of the gap to the goal that the suggested catch-up does not cover.
+        let unplanned = max(0, -diff - balance.compensation.values.reduce(0, +))
         if let next = balance.compensation.keys.min() {
             let extra = TimeFormat.hm(balance.compensation[next]!)
             var text = String(localized: "To catch up, add the time shown in orange to the marked days. Next: \(dayName(next)), +\(extra).")
-            if balance.uncompensatedMinutes > 0 {
-                text += " " + String(localized: "\(TimeFormat.hm(balance.uncompensatedMinutes)) does not fit in your planned days. Plan it on a free day.")
+            if unplanned > 0 {
+                text += " " + String(localized: "\(TimeFormat.hm(unplanned)) does not fit in your planned days. Plan it on a free day.")
             }
             return text
         }
-        if balance.coveredByPlanMinutes > 0 {
-            return String(localized: "You already planned enough extra time to reach your goal.")
-        }
-        return String(localized: "No planned days left this month. Plan \(TimeFormat.hm(-diff)) more on a free day to catch up.")
+        return String(localized: "Plan \(TimeFormat.hm(unplanned)) more on a free day to reach your goal.")
     }
 
     var body: some View {
@@ -433,7 +434,7 @@ private struct BalanceCard: View {
                         .font(.title)
                         .foregroundStyle(color)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text("Balance vs. schedule")
+                        Text("Balance vs. goal")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                         Text(headline)
@@ -644,7 +645,8 @@ private struct DayEditorSheet: View {
 // MARK: - Month report
 
 /// Month-end summary split into field service and credited (LDC/Bethel)
-/// hours, ready to send to Hourglass or any other reporting app.
+/// hours, ready to send to Hourglass, NW Publisher or any other
+/// reporting app.
 private struct MonthReportSheet: View {
     @Environment(\.dismiss) private var dismiss
 
@@ -664,13 +666,18 @@ private struct MonthReportSheet: View {
                 } header: {
                     Text("Credited hours")
                 } footer: {
-                    Text("Credited time is sent to Hourglass automatically, labelled in the report remarks.")
+                    Text("Credited time is sent automatically, labelled in the report remarks.")
                 }
                 Section {
                     Button {
                         HourglassIntegration.submit(report)
                     } label: {
                         Label("Send to Hourglass", systemImage: "hourglass")
+                    }
+                    Button {
+                        NWPublisherIntegration.submit(report)
+                    } label: {
+                        Label("Send to NW Publisher", systemImage: "doc.text")
                     }
                     ShareLink(item: report.reportText) {
                         Label("Share report…", systemImage: "square.and.arrow.up")
@@ -681,7 +688,7 @@ private struct MonthReportSheet: View {
                         Label("Copy report", systemImage: "doc.on.doc")
                     }
                 } footer: {
-                    Text("Sending opens Hourglass with the report form pre-filled; credited time is included in the remarks. Sharing works with any other reporting app on this phone.")
+                    Text("Sending opens Hourglass or NW Publisher with the report form pre-filled; credited time is included in the remarks. NW Publisher only accepts last month's report. Sharing works with any other reporting app on this phone.")
                 }
             }
             .navigationTitle(report.monthName)

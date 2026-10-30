@@ -75,6 +75,7 @@ final class MonthReportUITests: XCTestCase {
         openReportSheet(app)
 
         XCTAssertTrue(app.buttons["Send to Hourglass"].exists)
+        XCTAssertTrue(app.buttons["Send to NW Publisher"].exists)
         XCTAssertTrue(app.buttons["Share report…"].exists)
         XCTAssertTrue(app.buttons["Copy report"].exists)
 

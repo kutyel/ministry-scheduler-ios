@@ -82,10 +82,35 @@ struct MonthBalanceTests {
             DayEntry(year: 2026, month: 7, day: 12, plannedMinutes: 240),
         ]
         let b = MonthBalance(year: 2026, month: 7, entries: entries, goalMinutes: 720, now: now, calendar: calendar)
-        #expect(b.deviationMinutes == -240)
+        #expect(b.scheduleDeviationMinutes == -240)
+        // The plan still reaches the goal, so the balance is not behind.
+        #expect(b.deviationMinutes == 0)
         #expect(b.compensation.isEmpty)
         #expect(b.coveredByPlanMinutes == 240)
         #expect(b.uncompensatedMinutes == 0)
+    }
+
+    @Test func planningAboveTheGoalIsNotBehindEvenWithADeficit() {
+        let entries = [
+            DayEntry(year: 2026, month: 7, day: 1, plannedMinutes: 600, actualMinutes: 420),
+            DayEntry(year: 2026, month: 7, day: 2, plannedMinutes: 120, actualMinutes: 240),
+            DayEntry(year: 2026, month: 7, day: 12, plannedMinutes: 480),
+        ]
+        let b = MonthBalance(year: 2026, month: 7, entries: entries, goalMinutes: 1000, now: now, calendar: calendar)
+        #expect(b.scheduleDeviationMinutes == -60)
+        #expect(b.deviationMinutes == 140)
+        #expect(b.compensation.isEmpty)
+    }
+
+    @Test func planBelowTheGoalIsBehindWithoutAScheduleDeficit() {
+        let entries = [
+            DayEntry(year: 2026, month: 7, day: 1, plannedMinutes: 120, actualMinutes: 120),
+            DayEntry(year: 2026, month: 7, day: 12, plannedMinutes: 120),
+        ]
+        let b = MonthBalance(year: 2026, month: 7, entries: entries, goalMinutes: 300, now: now, calendar: calendar)
+        #expect(b.scheduleDeviationMinutes == 0)
+        #expect(b.deviationMinutes == -60)
+        #expect(b.compensation.isEmpty)
     }
 
     @Test func partlyPlannedExtraLeavesTheRestToCompensate() {
@@ -95,6 +120,7 @@ struct MonthBalanceTests {
         ]
         let b = MonthBalance(year: 2026, month: 7, entries: entries, goalMinutes: 720, now: now, calendar: calendar)
         #expect(b.coveredByPlanMinutes == 120)
+        #expect(b.deviationMinutes == -120)
         #expect(b.compensation == [12: 120])
     }
 

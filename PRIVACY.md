@@ -1,6 +1,6 @@
 # iMinistry Privacy Policy
 
-Last updated: October 19, 2026
+Last updated: October 30, 2026
 
 This policy explains what data the iMinistry app uses and where that data goes.
 
@@ -24,6 +24,7 @@ You can send your monthly report to other apps. You must tap a button for each o
 
 - If you share or copy the report, the app gives the report text to the app that you select, or to the clipboard.
 - If you send the report to Hourglass, the app opens a link to `app.hourglass-app.com`. The link contains the month, the year, and your hours. If you have credit hours, the link also contains those hours and their remarks. Hourglass receives this data under its own privacy policy.
+- If you send the report to NW Publisher, the app opens a link to `nwpublisher.com`. The link contains your hours. If you have credit hours, the link also contains those hours and their remarks. NW Publisher receives this data under its own privacy policy.
 
 The app does not send any data to these services by itself.
 

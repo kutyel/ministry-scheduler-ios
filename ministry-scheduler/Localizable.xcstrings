@@ -117,118 +117,118 @@
         }
       }
     },
-    "%@ ahead of schedule" : {
+    "%@ ahead of goal" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ vor dem Plan"
+            "value" : "%@ über dem Ziel"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ por delante del plan"
+            "value" : "%@ por delante de la meta"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ d'avance sur le planning"
+            "value" : "%@ d’avance sur l’objectif"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ in anticipo sul piano"
+            "value" : "%@ in anticipo sull’obiettivo"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "予定より%@先行"
+            "value" : "目標より%@多い"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ foran planen"
+            "value" : "%@ foran målet"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ przed planem"
+            "value" : "%@ ponad cel"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ adiantado em relação ao plano"
+            "value" : "%@ à frente da meta"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "比计划提前%@"
+            "value" : "超出目标%@"
           }
         }
       }
     },
-    "%@ behind schedule" : {
+    "%@ behind goal" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ hinter dem Plan"
+            "value" : "%@ hinter dem Ziel"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ por detrás del plan"
+            "value" : "%@ por detrás de la meta"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ de retard sur le planning"
+            "value" : "%@ en retard sur l’objectif"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ in ritardo sul piano"
+            "value" : "%@ indietro rispetto all’obiettivo"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "予定より%@遅れ"
+            "value" : "目標まであと%@"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ bak planen"
+            "value" : "%@ bak målet"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ za planem"
+            "value" : "%@ za celem"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ atrasado em relação ao plano"
+            "value" : "%@ atrás da meta"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "比计划落后%@"
+            "value" : "距离目标还差%@"
           }
         }
       }
@@ -780,60 +780,60 @@
         }
       }
     },
-    "Balance vs. schedule" : {
+    "Balance vs. goal" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bilanz zum Plan"
+            "value" : "Stand zum Ziel"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Balance frente al plan"
+            "value" : "Balance frente a la meta"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bilan par rapport au planning"
+            "value" : "Bilan par rapport à l’objectif"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bilancio rispetto al piano"
+            "value" : "Bilancio rispetto all’obiettivo"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "予定との差"
+            "value" : "目標との差"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Balanse mot planen"
+            "value" : "Balanse mot målet"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bilans względem planu"
+            "value" : "Bilans względem celu"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Saldo em relação ao plano"
+            "value" : "Balanço em relação à meta"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "与计划的差额"
+            "value" : "与目标的差距"
           }
         }
       }
@@ -1477,60 +1477,60 @@
         }
       }
     },
-    "Credited time is sent to Hourglass automatically, labelled in the report remarks." : {
+    "Credited time is sent automatically, labelled in the report remarks." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Angerechnete Zeit wird automatisch an Hourglass gesendet und in den Bemerkungen des Berichts ausgewiesen."
+            "value" : "Angerechnete Zeit wird automatisch gesendet und in den Bemerkungen des Berichts ausgewiesen."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El tiempo acreditado se envía a Hourglass automáticamente, indicado en las observaciones del informe."
+            "value" : "El tiempo acreditado se envía automáticamente, indicado en las observaciones del informe."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le temps crédité est envoyé automatiquement à Hourglass et indiqué dans les remarques du rapport."
+            "value" : "Le temps crédité est envoyé automatiquement et indiqué dans les remarques du rapport."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il tempo accreditato viene inviato automaticamente a Hourglass, indicato nelle osservazioni del rapporto."
+            "value" : "Il tempo accreditato viene inviato automaticamente, indicato nelle osservazioni del rapporto."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "クレジット時間は自動的にHourglassへ送信され、報告の備考欄に記載されます。"
+            "value" : "クレジット時間は自動的に送信され、報告の備考欄に記載されます。"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Godskrevet tid sendes automatisk til Hourglass og merkes i rapportens merknader."
+            "value" : "Godskrevet tid sendes automatisk og merkes i rapportens merknader."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Czas zaliczony jest wysyłany do Hourglass automatycznie i oznaczony w uwagach sprawozdania."
+            "value" : "Czas zaliczony jest wysyłany automatycznie i oznaczony w uwagach sprawozdania."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O tempo creditado é enviado ao Hourglass automaticamente, indicado nas observações do relatório."
+            "value" : "O tempo creditado é enviado automaticamente, indicado nas observações do relatório."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "抵算时间会自动发送到Hourglass，并标注在报告备注中。"
+            "value" : "抵算时间会自动发送，并标注在报告备注中。"
           }
         }
       }
@@ -1767,64 +1767,6 @@
         }
       }
     },
-    "hours" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stunden"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "horas"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "heures"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ore"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "時間"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "timer"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "godzin"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "horas"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "小时"
-          }
-        }
-      }
-    },
     "Hours" : {
       "localizations" : {
         "de" : {
@@ -1873,6 +1815,64 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Horas"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "小时"
+          }
+        }
+      }
+    },
+    "hours" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stunden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "horas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "heures"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ore"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "時間"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "timer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "godzin"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "horas"
           }
         },
         "zh-Hans" : {
@@ -2238,64 +2238,6 @@
         }
       }
     },
-    "No planned days left this month. Plan %@ more on a free day to catch up." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Diesen Monat sind keine Tage mehr geplant. Plane %@ mehr an einem freien Tag ein, um aufzuholen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No quedan días planificados este mes. Planifica %@ más en un día libre para compensar."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Il ne reste aucun jour prévu ce mois-ci. Prévois %@ de plus un jour libre pour rattraper."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Non ci sono più giorni pianificati questo mese. Pianifica %@ in più in un giorno libero per recuperare."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "今月は予定日が残っていません。空いている日に%@追加して取り戻しましょう。"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Det er ingen planlagte dager igjen denne måneden. Planlegg %@ mer på en ledig dag for å ta det igjen."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "W tym miesiącu nie ma już zaplanowanych dni. Zaplanuj %@ więcej na wolny dzień, aby nadrobić."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Não há mais dias planejados neste mês. Planeje mais %@ em um dia livre para compensar."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "本月没有剩余的计划日。请在空闲的一天多安排%@来补回。"
-          }
-        }
-      }
-    },
     "Not confirmed yet: %@. Confirm them to keep the balance accurate." : {
       "localizations" : {
         "de" : {
@@ -2354,60 +2296,118 @@
         }
       }
     },
-    "On schedule" : {
+    "On track for your goal" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Im Plan"
+            "value" : "Auf Kurs zum Ziel"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Según el plan"
+            "value" : "Vas bien para tu meta"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dans les temps"
+            "value" : "En bonne voie pour l’objectif"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "In linea con il piano"
+            "value" : "In linea con l’obiettivo"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "予定どおり"
+            "value" : "目標どおり"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I rute"
+            "value" : "I rute mot målet"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zgodnie z planem"
+            "value" : "Zgodnie z celem"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dentro do plano"
+            "value" : "No caminho certo para a meta"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "符合计划"
+            "value" : "按计划达成目标"
+          }
+        }
+      }
+    },
+    "Plan %@ more on a free day to reach your goal." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plane %@ mehr an einem freien Tag, um dein Ziel zu erreichen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planifica %@ más en un día libre para alcanzar tu meta."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planifie %@ de plus un jour libre pour atteindre ton objectif."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pianifica %@ in più in un giorno libero per raggiungere l’obiettivo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目標達成のため、空いている日に%@追加で計画しましょう。"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planlegg %@ mer på en ledig dag for å nå målet ditt."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaplanuj %@ więcej w wolny dzień, aby osiągnąć cel."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planeje mais %@ em um dia livre para atingir sua meta."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在空闲的日子再计划%@以达到目标。"
           }
         }
       }
@@ -2940,60 +2940,118 @@
         }
       }
     },
-    "Sending opens Hourglass with the report form pre-filled; credited time is included in the remarks. Sharing works with any other reporting app on this phone." : {
+    "Send to NW Publisher" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beim Senden öffnet sich Hourglass mit dem bereits ausgefüllten Berichtsformular; angerechnete Zeit steht in den Bemerkungen. Teilen funktioniert mit jeder anderen Berichts-App auf diesem Telefon."
+            "value" : "An NW Publisher senden"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Al enviar se abre Hourglass con el formulario del informe ya rellenado; el tiempo acreditado se incluye en las observaciones. Compartir funciona con cualquier otra app de informes de este teléfono."
+            "value" : "Enviar a NW Publisher"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’envoi ouvre Hourglass avec le formulaire du rapport prérempli ; le temps crédité figure dans les remarques. Le partage fonctionne avec toute autre application de rapport sur ce téléphone."
+            "value" : "Envoyer à NW Publisher"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’invio apre Hourglass con il modulo del rapporto già compilato; il tempo accreditato è incluso nelle osservazioni. La condivisione funziona con qualsiasi altra app per i rapporti su questo telefono."
+            "value" : "Invia a NW Publisher"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "送信するとHourglassが開き、報告フォームが自動入力されます。クレジット時間は備考に含まれます。共有はこの端末にある他の報告アプリでも使えます。"
+            "value" : "NW Publisherに送信"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sending åpner Hourglass med rapportskjemaet ferdig utfylt; godskrevet tid tas med i merknadene. Deling fungerer med alle andre rapportapper på denne telefonen."
+            "value" : "Send til NW Publisher"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wysłanie otwiera Hourglass z wypełnionym formularzem sprawozdania; czas zaliczony jest ujęty w uwagach. Udostępnianie działa z każdą inną aplikacją do sprawozdań na tym telefonie."
+            "value" : "Wyślij do NW Publisher"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ao enviar, o Hourglass abre com o formulário do relatório já preenchido; o tempo creditado é incluído nas observações. Compartilhar funciona com qualquer outro app de relatórios deste telefone."
+            "value" : "Enviar para o NW Publisher"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "发送时会打开Hourglass并自动填写报告表单；抵算时间包含在备注中。分享功能适用于本机上的任何其他报告应用。"
+            "value" : "发送到NW Publisher"
+          }
+        }
+      }
+    },
+    "Sending opens Hourglass or NW Publisher with the report form pre-filled; credited time is included in the remarks. NW Publisher only accepts last month's report. Sharing works with any other reporting app on this phone." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beim Senden öffnet sich Hourglass oder NW Publisher mit dem bereits ausgefüllten Berichtsformular; angerechnete Zeit steht in den Bemerkungen. NW Publisher akzeptiert nur den Bericht des Vormonats. Teilen funktioniert mit jeder anderen Berichts-App auf diesem Telefon."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al enviar se abre Hourglass o NW Publisher con el formulario del informe ya rellenado; el tiempo acreditado se incluye en las observaciones. NW Publisher solo acepta el informe del mes anterior. Compartir funciona con cualquier otra app de informes de este teléfono."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L’envoi ouvre Hourglass ou NW Publisher avec le formulaire du rapport prérempli ; le temps crédité figure dans les remarques. NW Publisher n’accepte que le rapport du mois précédent. Le partage fonctionne avec toute autre application de rapport sur ce téléphone."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L’invio apre Hourglass o NW Publisher con il modulo del rapporto già compilato; il tempo accreditato è incluso nelle osservazioni. NW Publisher accetta solo il rapporto del mese precedente. La condivisione funziona con qualsiasi altra app per i rapporti su questo telefono."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "送信するとHourglassまたはNW Publisherが開き、報告フォームが自動入力されます。クレジット時間は備考に含まれます。NW Publisherは前月の報告のみ受け付けます。共有はこの端末にある他の報告アプリでも使えます。"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sending åpner Hourglass eller NW Publisher med rapportskjemaet ferdig utfylt; godskrevet tid tas med i merknadene. NW Publisher godtar bare rapporten for forrige måned. Deling fungerer med alle andre rapportapper på denne telefonen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wysłanie otwiera Hourglass lub NW Publisher z wypełnionym formularzem sprawozdania; czas zaliczony jest ujęty w uwagach. NW Publisher przyjmuje tylko sprawozdanie z poprzedniego miesiąca. Udostępnianie działa z każdą inną aplikacją do sprawozdań na tym telefonie."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ao enviar, o Hourglass ou o NW Publisher abre com o formulário do relatório já preenchido; o tempo creditado é incluído nas observações. O NW Publisher só aceita o relatório do mês anterior. Compartilhar funciona com qualquer outro app de relatórios deste telefone."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "发送时会打开Hourglass或NW Publisher并自动填写报告表单；抵算时间包含在备注中。NW Publisher只接受上个月的报告。分享功能适用于本机上的任何其他报告应用。"
           }
         }
       }
@@ -3291,60 +3349,60 @@
         }
       }
     },
-    "This month ended %@ below the schedule." : {
+    "This month ended %@ below your goal." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dieser Monat endete %@ unter dem Plan."
+            "value" : "Dieser Monat endete %@ unter deinem Ziel."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este mes terminó %@ por debajo del plan."
+            "value" : "Este mes terminó %@ por debajo de tu meta."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ce mois s'est terminé %@ en dessous du planning."
+            "value" : "Ce mois s’est terminé %@ sous ton objectif."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Questo mese si è chiuso %@ sotto il piano."
+            "value" : "Questo mese si è chiuso %@ sotto l’obiettivo."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "今月は予定より%@少なく終わりました。"
+            "value" : "今月は目標に%@届きませんでした。"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Denne måneden endte %@ under planen."
+            "value" : "Denne måneden endte %@ under målet ditt."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ten miesiąc zakończył się %@ poniżej planu."
+            "value" : "Ten miesiąc zakończył się %@ poniżej celu."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este mês terminou %@ abaixo do plano."
+            "value" : "Este mês terminou %@ abaixo da sua meta."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "本月比计划少%@。"
+            "value" : "本月比目标少%@。"
           }
         }
       }
@@ -3703,64 +3761,6 @@
         }
       }
     },
-    "You already planned enough extra time to reach your goal." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Du hast schon genug zusätzliche Zeit geplant, um dein Ziel zu erreichen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ya planificaste suficiente tiempo extra para llegar a tu objetivo."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu as déjà prévu assez de temps en plus pour atteindre ton objectif."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hai già pianificato abbastanza tempo extra per raggiungere il tuo obiettivo."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "目標に届くだけの追加時間をすでに予定しています。"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Du har allerede planlagt nok ekstra tid til å nå målet ditt."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zaplanowałeś już wystarczająco dużo dodatkowego czasu, aby osiągnąć cel."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Você já planejou tempo extra suficiente para alcançar sua meta."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "你已经安排了足够的额外时间来达成目标。"
-          }
-        }
-      }
-    },
     "You have %@ of margin. You can do less on an upcoming day if you need to." : {
       "localizations" : {
         "de" : {
@@ -3819,60 +3819,60 @@
         }
       }
     },
-    "Your confirmed days match the plan." : {
+    "Your plan reaches your goal exactly." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deine bestätigten Tage entsprechen dem Plan."
+            "value" : "Dein Plan erreicht dein Ziel genau."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tus días confirmados coinciden con el plan."
+            "value" : "Tu plan alcanza tu meta exactamente."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tes jours confirmés correspondent au planning."
+            "value" : "Ton planning atteint exactement ton objectif."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I giorni confermati corrispondono al piano."
+            "value" : "Il tuo piano raggiunge esattamente l’obiettivo."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "確認済みの日は予定どおりです。"
+            "value" : "計画どおりで目標ちょうどです。"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De bekreftede dagene stemmer med planen."
+            "value" : "Planen din når målet ditt nøyaktig."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Potwierdzone dni zgadzają się z planem."
+            "value" : "Twój plan dokładnie osiąga cel."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seus dias confirmados correspondem ao plano."
+            "value" : "Seu plano atinge exatamente a meta."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已确认的日子与计划一致。"
+            "value" : "你的计划正好达到目标。"
           }
         }
       }
